@@ -27,4 +27,19 @@ def create(request):
         'error': error
     }
     return render(request, 'main/create.html', context)
-  
+
+def edit(request, task_id):
+    task = Task.objects.get(id=task_id)
+    if request.method == 'POST':
+        form = TaskForm(request.POST, instance=task)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+        else:
+            error = 'Something went wrong'
+    else:        
+        form = TaskForm(instance=task)
+    return render(request, 'main/edit.html', {'form': form})
+
+def delete(request):
+    pass
