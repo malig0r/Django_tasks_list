@@ -12,10 +12,15 @@
             <h3>{{el.title}}</h3>
             <p>{{el.task}}</p>
             <p>{{el.id}}</p>
-            <div id="container">
-                <a href="{%url 'edit' el.id%}"><i class="fas fa-pen"></i> Edit</a>
-                <a href="{%url 'delete' el.id%}"><i class="fas fa-pen"></i> Delete</a>
-              </div>
+              <div class="btn-wrapper text-center d-flex">
+                <button type="button" class="btn btn-info btn-sm"> 
+                 <a href="{%url 'edit' el.id%}" style="color:white"><i class="fas fa-pen"></i> Edit</a>
+                </button>
+                 <form action="{%url 'delete' el.id%}" method="POST">
+                    {% csrf_token %}
+                   <button class='btn btn-danger btn-sm' type="submit" value="Delete" onclick="return confirm('You are about to delete this task. Continue?')"><i class="fa fa-times"></i> Delete</button>
+                 </form>
+               </div>
             </div>
         {% endfor %}
     {% else %}

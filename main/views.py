@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Task
 from .forms import TaskForm
@@ -39,5 +39,8 @@ def edit(request, task_id):
         form = TaskForm(instance=task)
     return render(request, 'main/edit.html', {'form': form})
 
-def delete(request):
-    pass
+def delete(request, task_id):
+    task = Task.objects.get(id=task_id)
+    if request.method=='POST':
+        task.delete()
+    return redirect('home')
