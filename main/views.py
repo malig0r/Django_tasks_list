@@ -35,8 +35,6 @@ def edit(request, task_id):
         if form.is_valid():
             form.save()
             return redirect('home')
-        else:
-            error = 'Something went wrong'
     else:        
         form = TaskForm(instance=task)
     return render(request, 'main/edit.html', {'form': form})
