@@ -12,7 +12,7 @@
             <h3>{{el.title}}</h3>
             <p>{{el.task}}</p>
             <p>{{el.id}}</p>
-            <p>{{el.task_status}}</p>
+            <p>Completed on: {{el.done_date}}</p>
               <div class="btn-wrapper text-center d-flex">
                 <button type="button" class="btn btn-info btn-sm"> 
                  <a href="{%url 'edit' el.id%}" style="color:white"><i class="fas fa-pen"></i> Edit</a>
@@ -21,9 +21,9 @@
                     {% csrf_token %}
                    <button class='btn btn-danger btn-sm' type="submit" value="Delete" onclick="return confirm('You are about to delete this task. Continue?')"><i class="fa fa-times"></i> Delete</button>
                  </form>
-                 <form action="{%url 'do_undo' 'home' el.id%}" method="POST">
+                 <form action="{%url 'do_undo' 'done' el.id%}" method="POST">
                   {% csrf_token %}
-                 <button class='btn btn-info btn-sm' type="submit" value="Complete"><i class="fa fa-times"></i>Complete</button>
+                 <button class='btn btn-info btn-sm' type="submit" value="Uncomplete"><i class="fa fa-times"></i>Uncomplete</button>
                </form>
                </div>
             </div>
